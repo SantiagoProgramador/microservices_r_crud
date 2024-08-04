@@ -1,0 +1,15 @@
+
+services:
+  db:
+    image: mysql
+    container_name: microservices_DB
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: riwi_clanCrud_DB
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3307:3306"
+volumes:
+  db_data:

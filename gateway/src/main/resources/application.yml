@@ -1,0 +1,28 @@
+# spring.application.name=gateway
+spring:
+  application:
+    name: gateway
+  profiles:
+    active: default
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: clans_service
+          uri: lb://clanes-crud
+          predicates:
+            - Path=/api/v1/clans/**
+        - id: teamLeaders_service
+          uri: lb://team-leader-service
+          predicates:
+            - Path=/api/v1/team-leader/**
+server:
+  port: 8080
+eureka:
+  client:
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
